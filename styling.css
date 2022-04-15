@@ -1,0 +1,122 @@
+/* Body background color*/
+body {
+    background-color: #cda868;
+}
+
+/* Top Bar */
+.header {
+    padding: 15px;
+    text-align: center;
+    background: #e29208;
+    color: white;
+    font-size: 50px;
+    margin-top: 0px;
+    border-bottom: 5px solid rgba(255, 255, 255, 0.715);
+
+}
+
+/* Fade in animation */
+.fade-in-text {
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    animation: fadeIn linear 2s;
+    -webkit-animation: fadeIn linear 2s;
+    -moz-animation: fadeIn linear 2s;
+    -o-animation: fadeIn linear 2s;
+    -ms-animation: fadeIn linear 2s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-ms-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Carasoul Responiveness*/
+.carousel-inner {
+    height: 40vh;
+    padding-bottom: 0%;
+    margin-bottom: 0%;
+}
+
+.carousel-item {
+    height: 100%;
+}
+
+.img1 {
+    background-image: url('1.jpg');
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed !important;
+    background-size: cover !important;
+    background-position: center !important;
+}
+
+/* Center button */
+.button-container {
+    position: relative;
+    font-size: 24px;
+    margin-top: 8%;
+    margin-bottom: 10%;
+}
+
+.button-center {
+
+    margin: 0;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#confirmButton {
+    font-size: 24px;
+}
