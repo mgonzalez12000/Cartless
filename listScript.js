@@ -42,11 +42,13 @@ function addItem() {
     // Create an H2 element
     var h2 = document.createElement("H2");
     // Add to html
-    h2.innerHTML = '- ' + userInput.value;
+    // h2.innerHTML = '- ' + userInput.value;
     // Pushing user input items to list define in line 20
     lst.push(userInput.value);
     // Logging for testing purposes. Use Chrome/Safari dev tools' console to view changes.
     console.log(lst);
+
+
     // Check for duplicates of items by iterating through object (Hashmap implementation)
     // Key: word    Value: occurrences
     if (!(hashMap.hasOwnProperty(userInput.value))) {
@@ -59,21 +61,21 @@ function addItem() {
 
 
     /* Would like to show an alert when items already exist in hashmap. This is done by checking if the value is greater than 1. This was tried below (lines 67-76).
-    
     Algorithm issues: Once the duplicate is found, and the alert is thrown, when inputting a non-duplicate input, the alert still pop ups. MINOR feature.
     */
 
 
-    // for (var key in hashMap) {
-    //     var booleanVal = false
-    //     if (hashMap[key] > 1) {
-    //         alert('Uh oh!');
-    //         alert = function () {};
+    for (var key in hashMap) {
+        var booleanVal = false
+        if (hashMap[key] > 1) {
+            alert('uh oh, you already have this item in your list');
+            // Resets value pair to 1
+            hashMap[key] = 1;
 
-    //     } else {
-    //         h2.innerHTML = '- ' + userInput.value;
-    //     }
-    // }
+        } else {
+            h2.innerHTML = '- ' + userInput.value;
+        }
+    }
 
 
     h2.addEventListener("click", function () {
