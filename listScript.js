@@ -1,6 +1,12 @@
 // Ask user to enter list name
 var listName = prompt("Please enter a name for your list");
 
+// Checking the type of listName. listName is a String
+// console.log(typeof listName);
+
+// Changing first char of user input to uppercase.
+listName = listName.charAt(0).toUpperCase() + listName.slice(1);
+
 // If user input is not empty, update html
 if (listName != null) {
     document.getElementById('listTitle').innerHTML = '<b>' + listName + '</b>';
@@ -52,20 +58,18 @@ userInput.addEventListener('keydown', function (event) {
 
 // Function that handles adding items onto our display
 function addItem() {
+    // Verifying if userInput.value is indeed a string. userInput.value IS a string
+    // console.log(typeof userInput.value);
+
+    // Make first char in string uppercase
+    userInput.value = userInput.value.charAt(0).toUpperCase() + userInput.value.slice(1);
+
     // Create an H2 element
     var h2 = document.createElement("H2");
     // Adding items to list
     lst.push(userInput.value);
     // Logging for testing purposes. Use Chrome/Safari dev tools' console to view changes.
     console.log(lst);
-
-
-    /* 
-    BLOCKER: The item(s) is/are properly being handled where duplicate items are no longer showing up on the UI. 
-    However, the alert is thrown x number of times based on the loop iteration. Alert should appear once.
-    Lines 92 - 99
-    */
-
 
     // Using the HashMap (Object in JS) data structure to Keep track of occurrences for each user input.
     // Key: word    Value: occurrences
@@ -89,13 +93,21 @@ function addItem() {
     // Logging for testing purposes. Use Chrome/Safari dev tools' console to view changes being made to data structure.
     console.log(listOfDuplicateKeys);
 
+    // This was the previous implementation causing the blocker for duplicates/alert
     // Handling alert and adding items to the list UI.
-    for (var i = 0; i < lst.length; i++) {
-        if (userInput.value == listOfDuplicateKeys) {
-            alert('uh oh, you already have this item in your list');
-        } else {
-            h2.innerHTML = '- ' + userInput.value;
-        }
+    // for (var i = 0; i < lst.length; i++) {
+    //     if (userInput.value == listOfDuplicateKeys) {
+    //         alert('uh oh, you already have this item in your list');
+    //     } else {
+    //         h2.innerHTML = '- ' + userInput.value;
+    //     }
+    // }
+
+    // New implementation
+    if (listOfDuplicateKeys.includes(userInput.value)) {
+        alert('uh oh, you already have this item in your list');
+    } else {
+        h2.innerHTML = '- ' + userInput.value;
     }
 
     // Adds a line through element decorator when item is tapped or clicked
