@@ -1,4 +1,6 @@
 var customerName = prompt("Please enter your name");
+// Make user input's first character upper case
+customerName = customerName.charAt(0).toUpperCase() + customerName.slice(1);
 var myDate = new Date();
 var hrs = myDate.getHours();
 var greet;
