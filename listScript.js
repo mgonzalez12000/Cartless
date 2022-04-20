@@ -1,5 +1,6 @@
 // Ask user to enter list name
 var listName = prompt("Please enter a name for your list");
+
 // If user input is not empty, update html
 if (listName != null) {
     document.getElementById('listTitle').innerHTML = '<b>' + listName + '</b>';
@@ -8,21 +9,33 @@ if (listName != null) {
 // Get access to elements in HTML file
 // Get access to groceries container
 const groceries = document.getElementsByClassName('groceries')[0];
+
 // Get access to refresh icon
-const pencil = document.getElementById('refresh');
+const refresh = document.getElementById('refresh');
+
 // Get access to the confirm button
 const button = document.getElementById('confirmInput');
+
 // Get access to all of the items
 const allItems = document.getElementById('allItems');
+
 // Get access to input box
 const userInput = document.getElementById('userInput');
-// Cerate an empty list to add items to check duplicate inputs
+
+// Initialize an empty list
 var lst = [];
-// This is the list that will check for duplicates
+
+// list of duplicates
+var duplicateList = [];
+
+/* 
+Hash Map (Dictionary/Object) will track item and its occurrences.
+KEY: item  VALUE: occurrence
+*/
 const hashMap = {};
 
-// Add an event listener when they click the on the pencil icon 
-pencil.addEventListener('click', function () {
+// Add an event listener when user clicks the on the 'refresh' icon 
+refresh.addEventListener('click', function () {
     allItems.innerHTML = '';
 })
 
@@ -41,48 +54,59 @@ userInput.addEventListener('keydown', function (event) {
 function addItem() {
     // Create an H2 element
     var h2 = document.createElement("H2");
-    // Add to html
-    // h2.innerHTML = '- ' + userInput.value;
-    // Pushing user input items to list define in line 20
+    // Adding items to list
     lst.push(userInput.value);
     // Logging for testing purposes. Use Chrome/Safari dev tools' console to view changes.
     console.log(lst);
 
 
-    // Check for duplicates of items by iterating through object (Hashmap implementation)
+    /* 
+    BLOCKER: The item(s) is/are properly being handled where duplicate items are no longer showing up on the UI. 
+    However, the alert is thrown x number of times based on the loop iteration. Alert should appear once.
+    Lines 92 - 99
+    */
+
+
+    // Using the HashMap (Object in JS) data structure to Keep track of occurrences for each user input.
     // Key: word    Value: occurrences
     if (!(hashMap.hasOwnProperty(userInput.value))) {
         hashMap[userInput.value] = 1;
     } else {
         hashMap[userInput.value] += 1;
     }
-    // Logging for testing purposes. Use Chrome/Safari dev tools' console to view changes.
+
+    // Logging for testing purposes. Use Chrome/Safari dev tools' console to view changes data structure.
     console.log(hashMap);
 
-
-    /* Would like to show an alert when items already exist in hashmap. This is done by checking if the value is greater than 1. This was tried below (lines 67-76).
-    Algorithm issues: Once the duplicate is found, and the alert is thrown, when inputting a non-duplicate input, the alert still pop ups. MINOR feature.
-    */
-
-
+    // Populate listOfDuplicates if the value (count) is greater than 1.
+    var listOfDuplicateKeys = [];
     for (var key in hashMap) {
-        var booleanVal = false
         if (hashMap[key] > 1) {
-            alert('uh oh, you already have this item in your list');
-            // Resets value pair to 1
-            hashMap[key] = 1;
+            listOfDuplicateKeys.push(key)
+        }
+    }
 
+    // Logging for testing purposes. Use Chrome/Safari dev tools' console to view changes being made to data structure.
+    console.log(listOfDuplicateKeys);
+
+    // Handling alert and adding items to the list UI.
+    for (var i = 0; i < lst.length; i++) {
+        if (userInput.value == listOfDuplicateKeys) {
+            alert('uh oh, you already have this item in your list');
         } else {
             h2.innerHTML = '- ' + userInput.value;
         }
     }
 
-
+    // Adds a line through element decorator when item is tapped or clicked
     h2.addEventListener("click", function () {
-        h2.style.textDecoration = 'line-through';
+        if (h2.style.textDecoration != "line-through") {
+            h2.style.textDecoration = 'line-through';
+        } else {
+            h2.style.textDecoration = 'none';
+        }
     })
 
     allItems.insertAdjacentElement('beforeend', h2);
-
     userInput.value = '';
 }
