@@ -16,6 +16,9 @@ if (listName != null) {
 // Get access to groceries container
 const groceries = document.getElementsByClassName('groceries')[0];
 
+// Get access to lastEdited
+const lastEdited = document.getElementById('lastEdited');
+
 // Get access to refresh icon
 const refresh = document.getElementById('refresh');
 
@@ -48,12 +51,15 @@ refresh.addEventListener('click', function () {
 // Add an event listener when the user clicks on the 'Add Item' button
 button.addEventListener('click', function () {
     addItem();
+    lastEdited.innerHTML = 'Last edited: ' + document.lastModified;
 })
 
 // Add an event listener when the user presses the 'enter' button
 userInput.addEventListener('keydown', function (event) {
-    if (event.key == "Enter")
+    if (event.key == "Enter") {
         addItem();
+        lastEdited.innerHTML = 'Last edited: ' + document.lastModified;
+    }
 })
 
 // Function that handles adding items onto our display
