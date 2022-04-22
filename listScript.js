@@ -1,9 +1,6 @@
 // Ask user to enter list name
 var listName = prompt("Please enter a name for your list");
 
-// Checking the type of listName. listName is a String
-// console.log(typeof listName);
-
 // Changing first char of user input to uppercase.
 listName = listName.charAt(0).toUpperCase() + listName.slice(1);
 
@@ -11,6 +8,12 @@ listName = listName.charAt(0).toUpperCase() + listName.slice(1);
 if (listName != null) {
     document.getElementById('listTitle').innerHTML = '<b>' + listName + '</b>';
 }
+
+// Initialize an empty list
+var lst = [];
+
+// Initializing an empty list that will store duplicate items
+var duplicateList = [];
 
 // Get access to elements in HTML file
 // Get access to groceries container
@@ -30,12 +33,6 @@ const allItems = document.getElementById('allItems');
 
 // Get access to input box
 const userInput = document.getElementById('userInput');
-
-// Initialize an empty list
-var lst = [];
-
-// list of duplicates
-var duplicateList = [];
 
 /* 
 Hash Map (Dictionary/Object) will track item and its occurrences.
@@ -64,9 +61,6 @@ userInput.addEventListener('keydown', function (event) {
 
 // Function that handles adding items onto our display
 function addItem() {
-    // Verifying if userInput.value is indeed a string. userInput.value IS a string
-    // console.log(typeof userInput.value);
-
     // Make first char in string uppercase
     userInput.value = userInput.value.charAt(0).toUpperCase() + userInput.value.slice(1);
 
@@ -92,24 +86,11 @@ function addItem() {
     var listOfDuplicateKeys = [];
     for (var key in hashMap) {
         if (hashMap[key] > 1) {
-            listOfDuplicateKeys.push(key)
+            listOfDuplicateKeys.push(key);
         }
     }
 
-    // Logging for testing purposes. Use Chrome/Safari dev tools' console to view changes being made to data structure.
-    console.log(listOfDuplicateKeys);
-
-    // This was the previous implementation causing the blocker for duplicates/alert
-    // Handling alert and adding items to the list UI.
-    // for (var i = 0; i < lst.length; i++) {
-    //     if (userInput.value == listOfDuplicateKeys) {
-    //         alert('uh oh, you already have this item in your list');
-    //     } else {
-    //         h2.innerHTML = '- ' + userInput.value;
-    //     }
-    // }
-
-    // New implementation
+    // Handling if an item already exists in shopping list. Will throw an alert if the item exists.
     if (listOfDuplicateKeys.includes(userInput.value)) {
         alert('uh oh, you already have this item in your list');
     } else {
