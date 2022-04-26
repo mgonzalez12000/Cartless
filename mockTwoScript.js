@@ -1,13 +1,13 @@
-// Ask user to enter list name
-var listName = prompt("Please enter a name for your list");
+// // Ask user to enter list name
+// var listName = prompt("Please enter a name for your list");
 
-// Changing first char of user input to uppercase.
-listName = listName.charAt(0).toUpperCase() + listName.slice(1);
+// // Changing first char of user input to uppercase.
+// listName = listName.charAt(0).toUpperCase() + listName.slice(1);
 
-// If user input is not empty, update html
-if (listName != null) {
-    document.getElementById('listTitle').innerHTML = '<b>' + listName + '</b>';
-}
+// // If user input is not empty, update html
+// if (listName != null) {
+//     document.getElementById('listTitle').innerHTML = '<b>' + listName + '</b>';
+// }
 
 // Initialize an empty list
 var lst = [];

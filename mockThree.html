@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <!-- CSS file-->
-    <link href="listStyling.css" rel="stylesheet">
+    <link href="mockTwoStyling.css" rel="stylesheet">
 </head>
 
 <body style='margin:0%'>
@@ -18,7 +18,7 @@
     <div class="header">
         <div class="fade-in-text">
             <!-- List title -->
-            <h1 id='listTitle' style='text-align: center;'></h1>
+            <h1 id='listTitle' style='text-align: center;'>Walmart</h1>
         </div>
         <br>
         <!--Go back button to previous page (includes save user input)-->
@@ -42,12 +42,13 @@
                 <br>
                 <!--Display items in the shopping list-->
                 <div id='allItems'>
-                    <h2></h2>
+                    <!--PRELOADING ITEMS HERE-->
+                    <h2>- Bread</h2>
                 </div>
                 <div class="button-container">
                     <div class="button-center">
                         <a href='javascript:history.back()'>
-                            <button type="button" class="btn btn-primary" id='confirmButton'>Create List</button>
+                            <button type="button" class="btn btn-primary" id='confirmButton'>Update List</button>
                         </a>
                     </div>
                 </div>
@@ -56,7 +57,7 @@
     </div>
 
     <!--- Script Source Files -->
-    <script src=listScript.js></script>
+    <script src=mockTwoScript.js></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
         integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
         crossorigin="anonymous" />
