@@ -9,6 +9,8 @@
 //     document.getElementById('listTitle').innerHTML = '<b>' + listName + '</b>';
 // }
 
+var preLst = ["x5 Bread","x3 Apples","x1 Kraft American Cheese","x2 Cup Of Noodles","x2 2 Liters of Coke","x2 Bars of Hershey's Chocolate","x20 Marshmellows","10 lbs 90% Lean Ground Beef"]
+
 // Initialize an empty list
 var lst = [];
 
@@ -59,6 +61,10 @@ userInput.addEventListener('keydown', function (event) {
     }
 })
 
+for(let i =0; i < preLst.length; i++){
+    addPreloadedItem(preLst[i])
+}
+
 // Function that handles adding items onto our display
 function addItem() {
     // Make first char in string uppercase
@@ -96,6 +102,38 @@ function addItem() {
     } else {
         h2.innerHTML = '- ' + userInput.value;
     }
+
+    // Adds a line through element decorator when item is tapped or clicked
+    h2.addEventListener("click", function () {
+        if (h2.style.textDecoration != "line-through") {
+            h2.style.textDecoration = 'line-through';
+        } else {
+            h2.style.textDecoration = 'none';
+        }
+    })
+
+    allItems.insertAdjacentElement('beforeend', h2);
+    // Resets text box after input
+    userInput.value = '';
+}
+
+
+
+//Pre-load function
+function addPreloadedItem(preloaded) {
+    // Make first char in string uppercase
+    preloaded = preloaded.charAt(0).toUpperCase() + preloaded.slice(1);
+
+    // Create an H2 element
+    var h2 = document.createElement("H2");
+    // Adding items to list
+    lst.push(preloaded);
+    // Logging for testing purposes. Use Chrome/Safari dev tools' console to view changes.
+    console.log(lst);
+
+   
+    h2.innerHTML = '- ' + preloaded;
+    
 
     // Adds a line through element decorator when item is tapped or clicked
     h2.addEventListener("click", function () {

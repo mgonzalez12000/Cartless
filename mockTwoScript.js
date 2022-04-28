@@ -9,6 +9,8 @@
 //     document.getElementById('listTitle').innerHTML = '<b>' + listName + '</b>';
 // }
 
+var preLst =["Frosted Flakes","Hamburger Meat","Milk","Yogurt"]
+
 // Initialize an empty list
 var lst = [];
 
@@ -59,6 +61,11 @@ userInput.addEventListener('keydown', function (event) {
     }
 })
 
+//Loops through each preloaded value to print out onto html page 
+for(let i =0; i < preLst.length; i++){
+    addPreloadedItem(preLst[i])
+}
+
 // Function that handles adding items onto our display
 function addItem() {
     // Make first char in string uppercase
@@ -96,6 +103,36 @@ function addItem() {
     } else {
         h2.innerHTML = '- ' + userInput.value;
     }
+
+    // Adds a line through element decorator when item is tapped or clicked
+    h2.addEventListener("click", function () {
+        if (h2.style.textDecoration != "line-through") {
+            h2.style.textDecoration = 'line-through';
+        } else {
+            h2.style.textDecoration = 'none';
+        }
+    })
+
+    allItems.insertAdjacentElement('beforeend', h2);
+    // Resets text box after input
+    userInput.value = '';
+}
+
+//Pre-load function
+function addPreloadedItem(preloaded) {
+    // Make first char in string uppercase
+    preloaded = preloaded.charAt(0).toUpperCase() + preloaded.slice(1);
+
+    // Create an H2 element
+    var h2 = document.createElement("H2");
+    // Adding items to list
+    lst.push(preloaded);
+    // Logging for testing purposes. Use Chrome/Safari dev tools' console to view changes.
+    console.log(lst);
+
+   
+    h2.innerHTML = '- ' + preloaded;
+    
 
     // Adds a line through element decorator when item is tapped or clicked
     h2.addEventListener("click", function () {
