@@ -1,15 +1,4 @@
-// // Ask user to enter list name
-// var listName = prompt("Please enter a name for your list");
-
-// // Changing first char of user input to uppercase.
-// listName = listName.charAt(0).toUpperCase() + listName.slice(1);
-
-// // If user input is not empty, update html
-// if (listName != null) {
-//     document.getElementById('listTitle').innerHTML = '<b>' + listName + '</b>';
-// }
-
-var preLst = ["x5 Bread","x3 Apples","x1 Kraft American Cheese","x2 Cup Of Noodles","x2 2 Liters of Coke","x2 Bars of Hershey's Chocolate","x20 Marshmellows","10 lbs 90% Lean Ground Beef"]
+var preLst = ["x5 Bread", "x3 Apples", "x1 Kraft American Cheese", "x2 Cup Of Noodles", "x2 2 Liters of Coke", "x2 Bars of Hershey's Chocolate", "x20 Marshmellows", "10 lbs 90% Lean Ground Beef"];
 
 // Initialize an empty list
 var lst = [];
@@ -40,11 +29,14 @@ const userInput = document.getElementById('userInput');
 Hash Map (Dictionary/Object) will track item and its occurrences.
 KEY: item  VALUE: occurrence
 */
-const hashMap = {};
+var hashMap = {};
+var listOfDuplicateKeys = [];
 
 // Add an event listener when user clicks the on the 'refresh' icon 
 refresh.addEventListener('click', function () {
     allItems.innerHTML = '';
+    hashMap = {};
+    listOfDuplicateKeys = [];
 })
 
 // Add an event listener when the user clicks on the 'Add Item' button
@@ -55,13 +47,13 @@ button.addEventListener('click', function () {
 
 // Add an event listener when the user presses the 'enter' button
 userInput.addEventListener('keydown', function (event) {
-    if (event.key == "Enter") {
+    if (event.key == "Enter" && userInput.value != '') {
         addItem();
         lastEdited.innerHTML = 'Last edited: ' + document.lastModified;
     }
 })
 
-for(let i =0; i < preLst.length; i++){
+for (let i = 0; i < preLst.length; i++) {
     addPreloadedItem(preLst[i])
 }
 
@@ -72,10 +64,6 @@ function addItem() {
 
     // Create an H2 element
     var h2 = document.createElement("H2");
-    // Adding items to list
-    lst.push(userInput.value);
-    // Logging for testing purposes. Use Chrome/Safari dev tools' console to view changes.
-    console.log(lst);
 
     // Using the HashMap (Object in JS) data structure to Keep track of occurrences for each user input.
     // Key: word    Value: occurrences
@@ -89,7 +77,6 @@ function addItem() {
     console.log(hashMap);
 
     // Populate listOfDuplicates if the value (count) is greater than 1.
-    var listOfDuplicateKeys = [];
     for (var key in hashMap) {
         if (hashMap[key] > 1) {
             listOfDuplicateKeys.push(key);
@@ -131,9 +118,28 @@ function addPreloadedItem(preloaded) {
     // Logging for testing purposes. Use Chrome/Safari dev tools' console to view changes.
     console.log(lst);
 
-   
+    // Using the HashMap (Object in JS) data structure to Keep track of occurrences for each user input.
+    // Key: word    Value: occurrences
+    for (var i = 0; i < lst.length; i++) {
+        if (!(hashMap.hasOwnProperty(lst[i]))) {
+            hashMap[lst[i]] = 1;
+        } else {
+            hashMap[lst[i]] += 1;
+        }
+    }
+
+    // Logging for testing purposes. Use Chrome/Safari dev tools' console to view changes data structure.
+    console.log(hashMap);
+
+    // Populate listOfDuplicates if the value (count) is greater than 1.
+    var listOfDuplicateKeys = [];
+    for (var key in hashMap) {
+        if (hashMap[key] > 1) {
+            listOfDuplicateKeys.push(key);
+        }
+    }
+
     h2.innerHTML = '- ' + preloaded;
-    
 
     // Adds a line through element decorator when item is tapped or clicked
     h2.addEventListener("click", function () {

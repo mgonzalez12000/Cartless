@@ -1,6 +1,8 @@
 // Ask user to enter list name
 var listName = prompt("Please enter a name for your list");
-
+while (listName == "" || listName == null) {
+    listName = prompt("Please enter your name", "");
+}
 // Changing first char of user input to uppercase.
 listName = listName.charAt(0).toUpperCase() + listName.slice(1);
 
@@ -8,9 +10,6 @@ listName = listName.charAt(0).toUpperCase() + listName.slice(1);
 if (listName != null) {
     document.getElementById('listTitle').innerHTML = '<b>' + listName + '</b>';
 }
-
-// Initialize an empty list
-var lst = [];
 
 // Initializing an empty list that will store duplicate items
 var duplicateList = [];
@@ -38,11 +37,14 @@ const userInput = document.getElementById('userInput');
 Hash Map (Dictionary/Object) will track item and its occurrences.
 KEY: item  VALUE: occurrence
 */
-const hashMap = {};
+var hashMap = {};
+var listOfDuplicateKeys = [];
 
 // Add an event listener when user clicks the on the 'refresh' icon 
 refresh.addEventListener('click', function () {
     allItems.innerHTML = '';
+    hashMap = {};
+    listOfDuplicateKeys = [];
 })
 
 // Add an event listener when the user clicks on the 'Add Item' button
@@ -53,7 +55,7 @@ button.addEventListener('click', function () {
 
 // Add an event listener when the user presses the 'enter' button
 userInput.addEventListener('keydown', function (event) {
-    if (event.key == "Enter") {
+    if (event.key == "Enter" && userInput.value != '') {
         addItem();
         lastEdited.innerHTML = 'Last edited: ' + document.lastModified;
     }
@@ -66,10 +68,6 @@ function addItem() {
 
     // Create an H2 element
     var h2 = document.createElement("H2");
-    // Adding items to list
-    lst.push(userInput.value);
-    // Logging for testing purposes. Use Chrome/Safari dev tools' console to view changes.
-    console.log(lst);
 
     // Using the HashMap (Object in JS) data structure to Keep track of occurrences for each user input.
     // Key: word    Value: occurrences
@@ -83,7 +81,6 @@ function addItem() {
     console.log(hashMap);
 
     // Populate listOfDuplicates if the value (count) is greater than 1.
-    var listOfDuplicateKeys = [];
     for (var key in hashMap) {
         if (hashMap[key] > 1) {
             listOfDuplicateKeys.push(key);
