@@ -89,6 +89,7 @@ body {
 }
 
 .img1 {
+    /*Image source: https://www.rila.org/blog/2020/08/changing-retail-for-the-evolving-consumer*/
     background-image: url('1.jpg');
     height: 100%;
     width: 100%;
