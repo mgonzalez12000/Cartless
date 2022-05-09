@@ -53,7 +53,7 @@ userInput.addEventListener('keydown', function (event) {
     }
 })
 
-//Loops through each preloaded value to print out onto html page 
+//Loop through each preloaded value to print out onto html page 
 for (let i = 0; i < preLst.length; i++) {
     addPreloadedItem(preLst[i])
 }

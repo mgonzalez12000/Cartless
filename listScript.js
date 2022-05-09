@@ -40,7 +40,7 @@ KEY: item  VALUE: occurrence
 var hashMap = {};
 var listOfDuplicateKeys = [];
 
-// Add an event listener when user clicks the on the 'refresh' icon 
+// Add an event listener when user clicks on the 'refresh' icon 
 refresh.addEventListener('click', function () {
     allItems.innerHTML = '';
     hashMap = {};

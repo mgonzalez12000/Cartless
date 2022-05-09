@@ -85,7 +85,7 @@ function addItem() {
         }
     }
 
-    // Handling if an item already exists in shopping list. Will throw an alert if the item exists.
+    // Handling of throwing an alert if item already exists in list.
     if (listOfDuplicateKeys.includes(userInput.value)) {
         alert('uh oh, you already have this item in your list');
     } else {
